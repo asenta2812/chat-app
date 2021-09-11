@@ -1,0 +1,55 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "learn expressjs",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "node-sass -w src/resources/scss -o src/public/css",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel ./src -d ./build/src",
+    "build": "npm run clean && npm run build-babel && cp ./.env.production build",
+    "production": "NODE_ENV=production node ./build/src/server.js",
+    "start": "NODE_ENV=development nodemon --exec ./node_modules/.bin/babel-node ./src/server.js"
+  },
+  "author": "asenta",
+  "license": "ISC",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma es5 --tab-width 4 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.5",
+    "@socket.io/admin-ui": "^0.2.0",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.13",
+    "mongoose-delete": "^0.5.3",
+    "node-sass": "^6.0.0",
+    "socket.io": "^4.1.2",
+    "validator": "^13.6.0",
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.5",
+    "@babel/node": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.5",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-google": "^0.14.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.1"
+  }
+}
